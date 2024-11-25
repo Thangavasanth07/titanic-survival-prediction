@@ -31,6 +31,9 @@ input_data = pd.DataFrame({
     'Embarked_S': [1 if embarked == 'S' else 0]
 })
 
+# Reindex the input data to match the model features
+input_data = input_data.reindex(columns=model.feature_names_in_, fill_value=0)
+
 # Make a prediction
 prediction = model.predict(input_data)
 st.write("Survival Prediction: ", "Survived" if prediction[0] == 1 else "Not Survived")
